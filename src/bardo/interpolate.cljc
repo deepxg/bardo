@@ -124,6 +124,7 @@
       (fn [t]
         (let [v (intrpl t)]
           (match [t v]
+                 [_ (_ :guard record?)] v
                  [0 (_ :guard hash-map?)] (select-keys v (keys start))
                  [1 (_ :guard hash-map?)] (select-keys v (keys end))
                  [0 (_ :guard sequential?)] (vec (take (count start) v))
